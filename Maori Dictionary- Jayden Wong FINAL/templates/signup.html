@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}MaĹri Dictionary | Signup{% endblock %}
+
+{% block heading %}MaĹri - English Dictionary{% endblock %}
+
+{% block main %}
+<form class="SignupForm" method="post">
+        <div class="form-group">
+            <div class="form-label"><label for="firstname">First Name:</label></div>
+            <div class="form-element"><input type="text" name="fname" id="fname" maxlength ="30" required></div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-label"><label for="lastname">Last Name:</label></div>
+            <div class="form-element"><input type="text" name="lname" id="lname" maxlength ="30" required></div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-label"><label for="email">Email Address:</label></div>
+            <div class="form-element"><input type="email" name="email" id="email" maxlength ="80" required></div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-label"><label for="password">Password:</label></div>
+            <div class="form-element"><input type="password" name="password" id="password" maxlength ="60" required></div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-label"><label for="password2">Password (again):</label></div>
+            <div class="form-element"><input type="password" name="password2" id="password2" maxlength ="60" required></div>
+        </div>
+
+        <div class="form-group">
+            <div></div>
+            <div class="form-element"><input type="reset"></div>
+        </div>
+
+        <div class="form-group">
+            <div></div>
+            <div class="form-element"><input type="submit"></div>
+        </div>
+    </form>
+    
+        {% if request.args.get('error') %}
+        <div class="alert alert-error">
+        {{ request.args.get('error') }}
+        <span class="alert-close"><a href="#">X</a></span>
+        </div>
+        {% endif %}
+
+        {% if request.args.get('message') %}
+        <div class="alert alert-message">
+        {{ request.args.get('message') }}
+        <span class="alert-close"><a href="#">X</a></span>
+        </div>
+        {% endif %}
+    
+{% endblock %}

@@ -1,0 +1,60 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Suez+One&display=swap" rel="stylesheet">
+	<title>{% block title %}{% endblock %}</title>
+	<meta name="Description" content="Author: Jayden Wong, Content: A dictionary to convert maori words to english.">
+</head>
+
+<body>
+	<div id="container">
+
+		<header>
+			<h1>{% block heading %}{% endblock %}</h1>
+		</header>
+
+		<nav>
+            <input type="checkbox" name="drop_down_menu" />
+            <span></span>
+			<span></span>
+			<span></span>
+			<ul>
+
+                <li>
+                    <h1>Main</h1>
+                    <a href="/">Home</a>
+                    <a href="/search">Search</a>
+
+                    {% if logged_in %}
+                        <a href="/logout">Log out</a>
+                    {% else %}
+                        <a href="/login">Log in</a>
+                    {% endif %}
+
+                    <h1> Categories </h1>
+                    {% for Categories in topics %}
+                        <a href="/{{Categories[0]}}"> {{ Categories[1] }}</a>
+                    {% endfor %}
+
+                </li>
+			</ul>
+		</nav>
+
+		<main>
+            {% block main%}{% endblock %}
+        </main>
+
+		<footer>
+			<p>
+				&copy; Jayden Wong , 2021
+			</p>
+		</footer>
+
+	</div>
+<script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/maori_dictionary.js') }}"></script>
+</body>
+</html>

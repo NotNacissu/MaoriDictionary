@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Maōri Dictionary | Search{% endblock %}
+
+{% block heading %}Maōri - English Dictionary{% endblock %}
+
+{% block main %}
+    <h1> Search </h1>
+      <input type="text" id="search_function" onkeyup="search_function()" placeholder="Search for words in english..">
+
+    <table id="search_table">
+        <tr class="header">
+            <th>English</th>
+            <th>Maori</th>
+        </tr>
+        {% for Dictionary in words  %}
+        <tr class="clickable-row" data-href='/{{ Dictionary[3]}}/{{ Dictionary[0]}}'>
+        <td> {{ Dictionary[1] }} </td> <td> {{ Dictionary[2] }} </td>
+        {% endfor %}
+    </table>
+
+
+
+{% endblock %}

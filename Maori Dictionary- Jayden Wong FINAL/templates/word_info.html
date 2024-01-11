@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}MaĹri Dictionary | Word Info{% endblock %}
+
+{% block heading %}MaĹri - English Dictionary{% endblock %}
+
+{% block main %}
+ <div id="dictionary_categories">
+ {% for Dictionary in info %}
+    <h1> {{ Dictionary[2] }} </h1>
+
+    <table>
+        <tr>
+            <th> Translation </th>
+            <td> {{ Dictionary[1] }} </td>
+        </tr>
+        <tr>
+            <th> Description </th>
+            <td> {{ Dictionary[4] }} </td>
+        </tr>
+        <tr>
+            <th> Year Level </th>
+            <td> {{ Dictionary[5] }} </td>
+        </tr>
+        <tr>
+            <th> Date Added </th>
+            <td> {{ Dictionary[6] }} </td>
+        </tr>
+        <tr>
+            <th> Original author </th>
+            <td> {{ Dictionary[7] }} </td>
+        </tr>
+        <tr>
+            <th> Image </th>
+            <td><img src="/static/images/{{ Dictionary[8] }}"></td>
+        </tr>
+    </table>
+ {% endfor %}
+ </div>
+ <div>
+ {% if logged_in %}
+        <h1>Edit Word</h1>
+            <form class="EditWord" method="post">
+                <div class="form-group">
+                    <div class="form-label"><label for="english">English Edit:</label></div>
+                    <div class="form-element"><input type="text" name="edit_english" id="english" maxlength="30" required></div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-label"><label for="maori">Maori Edit:</label></div>
+                    <div class="form-element"><input type="text" name="edit_maori" id="maori" maxlength="30" required></div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-label"><label for="description">Description Edit:</label></div>
+                    <div class="form-element"><input type="text" name="edit_description" id="description" maxlength="300" required></div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-label"><label for="level">Edit year level:</label></div>
+                    <div class="form-element"><input type="number" name="edit_level" id="level" min="1" max="10" value="1" step="1" required></div>
+                </div>
+
+                <div class="form-group">
+                    <div></div>
+                    <div class="form-element"><input type="reset"></div>
+                </div>
+
+                <div class="form-group">
+                    <div></div>
+                    <div class="form-element"><input type="submit" name="edit_word_button"></div>
+                </div>
+            </form>
+
+            <h1>Delete Word</h1>
+            <form class="DeleteWord" method="post">
+                <div class="form-group">
+                <div></div>
+                <div class="confirmation"><input type="submit" name="delete_word" value="Delete Word"></div>
+            </div>
+            </form>
+ {% endif %}
+ </div>
+
+{% endblock %}
